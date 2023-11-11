@@ -3,11 +3,41 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import LoginScreen from './pages/login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <div>Hello world!</div>,
+  },
+  {
+    path: "/login",
+    element: <LoginScreen />,
+  },
+  {
+    path: "/profile",
+    element: <div>Hello world 2!</div>,
+  },
+  {
+    path: "/highscore",
+    element: <div>Hello world 2!</div>,
+  },
+  {
+    path: "/game",
+    element: <div>Hello world 2!</div>,
+  },
+]);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
+    {/* <App /> */}
   </React.StrictMode>
 );
 
