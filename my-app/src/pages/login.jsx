@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import loginUser from '../apis/loginapi';
 
 const LoginScreen = () => {
   const [loginData, setLoginData] = useState({
@@ -17,6 +18,8 @@ const LoginScreen = () => {
       ...prevData,
       [name]: value,
     }));
+
+    
   };
 
   const handleCreateChange = (e) => {
@@ -31,13 +34,16 @@ const LoginScreen = () => {
     e.preventDefault();
     // Implement your login logic here
     console.log('Login data:', loginData);
-  };
+     loginUser(loginData.username, loginData.password)
+        .then(data => console.log(data));
 
-  const handleCreateSubmit = (e) => {
-    e.preventDefault();
-    // Implement your login logic here
-    console.log('Login data:', createData);
-  };
+    };
+
+    const handleCreateSubmit = (e) => {
+      e.preventDefault();
+      // Implement your login logic here
+      console.log('Login data:', createData);
+    };
 
   return (
     <div className="login-container">
