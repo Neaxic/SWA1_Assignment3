@@ -1,10 +1,12 @@
 import React from "react";
 
-function HighScore() {
+function HighScoreContainer() {
   return (
     <div>
-      <h1>High Score</h1>
+      <h2>Highscore</h2>
+      <button>Increse Highscore </button>
     </div>
   );
 }
-export default HighScoreContiner;
+
+export default HighScoreContainer;
