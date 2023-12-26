@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import store from "./redux/highscore/store";
+import store from "./redux/store";
 import { Provider } from "react-redux";
 import HighScoreContainer from "./components/HighScoreContainer";
 
