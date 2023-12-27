@@ -1,5 +1,4 @@
 import { CREATE_REQUEST, CREATE_SUCCESS, CREATE_FAILURE } from "./types";
-import thunk from "redux-thunk";
 
 const initialState = {
   isLoading: false,

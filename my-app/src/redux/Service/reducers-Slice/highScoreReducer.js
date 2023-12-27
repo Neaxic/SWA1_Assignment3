@@ -1,4 +1,4 @@
-import { Increse_HighScore } from "./highScoreTypes";
+import { Increse_HighScore } from "../types/highScoreTypes";
 const initialState = {
   highScore: 110,
 };
