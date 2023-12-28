@@ -1,6 +1,5 @@
-import { Increse_HighScore } from "../types/highScoreTypes";
 const initialState = {
-  highScore: 110,
+  highScore: 0,
 };
 
 const highScoreReducer = (state = initialState, action) => {

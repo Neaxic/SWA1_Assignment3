@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createUser } from "../redux/Service/actions-Thunks/createAction";
-import { useNavigate } from "react-router-dom";
-function Signup() {
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../redux/Service/actions-Thunks/loginAction";
+
+function LoginContainer() {
   const dispatch = useDispatch();
+  const loginStatus = useSelector((state) => state.auth.status);
+  const loginError = useSelector((state) => state.auth.error);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -13,7 +15,6 @@ function Signup() {
   const [errors, setErrors] = useState({
     usernameError: "",
     passwordError: "",
-    createUserError: "",
   });
 
   const handleInputChange = (e) => {
@@ -31,10 +32,8 @@ function Signup() {
     setErrors({
       usernameError: "",
       passwordError: "",
-      createUserError: "",
     });
 
-    // Validering
     if (!formData.username || typeof formData.username !== "string") {
       setErrors({
         ...errors,
@@ -50,31 +49,20 @@ function Signup() {
       });
       return;
     }
-    // Dispatch createUser action
+
     try {
       await dispatch(
-        createUser({
-          username: formData.username,
-          password: formData.password,
-        })
+        loginUser({ username: formData.username, password: formData.password })
       );
-      // Nulstiller formular efter succes
-      setFormData({
-        username: "",
-        password: "",
-      });
+      // her kunne du håndtere navigation efter login
     } catch (error) {
-      setErrors({
-        ...errors,
-        createUserError:
-          "Username already exists. Please choose a different one.",
-      });
+      // Håndter eventuelle fejl ved login
     }
   };
 
   return (
     <>
-      <h1>Sign up</h1>
+      <h1>Login</h1>
       <form className="form-group custom-form" onSubmit={handleSubmit}>
         <label>Username</label>
         <input
@@ -103,16 +91,15 @@ function Signup() {
         )}
         <br />
         <button type="submit" className="btn btn-success btn-md">
-          Sign up
+          Login
         </button>
-        {errors.createUserError && (
-          <div className="error">{errors.createUserError}</div>
+        {loginStatus === "success" && <div>Login Successful!</div>}
+        {loginStatus === "failed" && (
+          <div className="error">Login Failed: {loginError}</div>
         )}
-        <br />
-        <br />
       </form>
     </>
   );
 }
 
-export default Signup;
+export default LoginContainer;
