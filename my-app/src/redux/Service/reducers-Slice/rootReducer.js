@@ -6,7 +6,7 @@ import userProfileReducer from "./userReducer";
 
 const rootReducer = combineReducers({
   //highscore: highscoreReducer,
-  //login: loginReducer,
+  login: loginReducer,
   //profile: profileReducer,
   userProfile: userProfileReducer,
 });

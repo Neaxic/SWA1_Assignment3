@@ -4,8 +4,10 @@ import { loginUser } from "../redux/Service/actions-Thunks/loginAction";
 
 function LoginContainer() {
   const dispatch = useDispatch();
-  const loginStatus = useSelector((state) => state.auth.status);
-  const loginError = useSelector((state) => state.auth.error);
+  const loginStatus = useSelector((state) =>
+    state.user?.data ? "success" : null
+  );
+  const loginError = useSelector((state) => state.user?.error);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -35,18 +37,18 @@ function LoginContainer() {
     });
 
     if (!formData.username || typeof formData.username !== "string") {
-      setErrors({
-        ...errors,
+      setErrors((prevErrors) => ({
+        ...prevErrors,
         usernameError: "Username is required and must be a string.",
-      });
+      }));
       return;
     }
 
     if (!formData.password || typeof formData.password !== "string") {
-      setErrors({
-        ...errors,
+      setErrors((prevErrors) => ({
+        ...prevErrors,
         passwordError: "Password is required and must be a string.",
-      });
+      }));
       return;
     }
 
@@ -54,9 +56,9 @@ function LoginContainer() {
       await dispatch(
         loginUser({ username: formData.username, password: formData.password })
       );
-      // her kunne du håndtere navigation efter login
+      // NAvigere til spil siden
     } catch (error) {
-      // Håndter eventuelle fejl ved login
+      console.error("Error in handleSubmit:", error);
     }
   };
 
@@ -93,10 +95,6 @@ function LoginContainer() {
         <button type="submit" className="btn btn-success btn-md">
           Login
         </button>
-        {loginStatus === "success" && <div>Login Successful!</div>}
-        {loginStatus === "failed" && (
-          <div className="error">Login Failed: {loginError}</div>
-        )}
       </form>
     </>
   );
