@@ -1,23 +1,30 @@
-import "./App.css";
-import store from "./store";
-import rootReducer from "./redux/Service/reducers-Slice/rootReducer";
-import { Provider } from "react-redux";
-import HighScoreContainer from "./components/HighScoreContainer";
-import CreateContainer from "./components/CreateContainer";
-import login from "./components/LoginContainer";
-import LoginContainer from "./components/LoginContainer";
+import React from "react";
+import { Provider } from "react-redux"; // Importer Provider fra react-redux
+import store from "./store"; // Importer din Redux-butik
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavbarContainer";
 import GameContainer from "./components/GameContainer";
+import LoginContainer from "./components/LoginContainer";
+import CreateContainer from "./components/CreateContainer";
+import HighScoreContainer from "./components/HighScoreContainer";
+
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        <h2>hej</h2>
-        <GameContainer />
-        <LoginContainer />
-        <CreateContainer />
-        <HighScoreContainer />
-      </div>
+      <Router>
+        <div className="App">
+          <NavBar />
+          <Routes>
+            <Route path="/game" element={<GameContainer />} />
+            <Route path="/login" element={<LoginContainer />} />
+            <Route path="/signup" element={<CreateContainer />} />
+            <Route path="/profile" element={<HighScoreContainer />} />
+          </Routes>
+        </div>
+      </Router>
     </Provider>
   );
 }
+
 export default App;
