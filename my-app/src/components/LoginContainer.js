@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../redux/Service/actions-Thunks/loginAction";
+import { loginUser } from "../redux/Service/actions-Thunks-api/loginAction";
 
 function LoginContainer() {
   const dispatch = useDispatch();

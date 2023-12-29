@@ -1,9 +1,11 @@
+import { Dispatch } from "redux";
+const url = "http://localhost:9090";
 export const fetchGames = (token) => {
   return async (dispatch) => {
     dispatch(getGamesRequest());
 
     try {
-      const response = await fetch(`${serverUrl}/games?token=${token}`, {
+      const response = await fetch(`${url}/games?token=${token}`, {
         method: "GET",
       });
 
@@ -23,7 +25,7 @@ export const startNewGame = (token, userId) => {
   return async (dispatch) => {
     dispatch(postGameRequest());
     try {
-      const response = await fetch(`${serverUrl}/games?token=${token}`, {
+      const response = await fetch(`${url}/games?token=${token}`, {
         method: "POST",
       });
 
@@ -47,12 +49,9 @@ export const fetchGameById = (token, gameId) => {
     dispatch(getGameByIdRequest());
 
     try {
-      const response = await fetch(
-        `${serverUrl}/games/${gameId}?token=${token}`,
-        {
-          method: "GET",
-        }
-      );
+      const response = await fetch(`${url}/games/${gameId}?token=${token}`, {
+        method: "GET",
+      });
 
       if (!response.ok) {
         throw new Error("Failed to get gameID");
@@ -71,16 +70,13 @@ export const updateGame = (gameId, token, updateData) => {
     dispatch(updateGameRequest());
 
     try {
-      const response = await fetch(
-        `${serverUrl}/games/${gameId}?token=${token}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updateData),
-        }
-      );
+      const response = await fetch(`${url}/games/${gameId}?token=${token}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateData),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to update game");

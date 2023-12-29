@@ -15,6 +15,7 @@ function App() {
       <Router>
         <div className="App">
           <NavBar />
+          <HighScoreContainer />
           <Routes>
             <Route path="/game" element={<GameContainer />} />
             <Route path="/login" element={<LoginContainer />} />

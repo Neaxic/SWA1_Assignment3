@@ -160,14 +160,10 @@ export function move<T>(
           kind: "Match",
           match: match,
         });
-
-        // Mark matched tiles for removal
         for (let position of match.positions) {
           positionsToRemove.add(`${position.row}-${position.col}`);
         }
       }
-
-      // Shift tiles down and replace matched tiles
       for (let col = 0; col < board.width; col++) {
         let emptyRow = board.height - 1;
         for (let row = board.height - 1; row >= 0; row--) {
@@ -180,8 +176,6 @@ export function move<T>(
             emptyRow--;
           }
         }
-
-        // Fill the empty spaces with new tiles
         while (emptyRow >= 0) {
           board.tiles[emptyRow * board.width + col] = generator.next();
           emptyRow--;
@@ -193,10 +187,8 @@ export function move<T>(
       matchesFound = false;
     }
   }
-
   return { board, effects: effects };
 }
-
 function findMatches<T>(board: Board<T>): Match<T>[] {
   const matches: Match<T>[] = [];
 

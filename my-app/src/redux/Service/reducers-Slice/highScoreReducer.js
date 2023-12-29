@@ -1,17 +1,20 @@
+// reducers/highscoreReducer.js
+import { SET_HIGHSCORE } from "../actions-Thunks-api/highScoreActions";
+
 const initialState = {
   highScore: 0,
 };
 
-const highScoreReducer = (state = initialState, action) => {
+function highscoreReducer(state = initialState, action) {
   switch (action.type) {
-    case "Increse_HighScore":
+    case SET_HIGHSCORE:
       return {
         ...state,
-        highScore: action.payload,
+        highScore: action.highScore,
       };
     default:
       return state;
   }
-};
+}
 
-export default highScoreReducer;
+export default highscoreReducer;

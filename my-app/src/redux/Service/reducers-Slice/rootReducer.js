@@ -3,11 +3,11 @@ import highscoreReducer from "./highScoreReducer";
 import loginReducer from "./loginReducer";
 import profileReducer from "./profileReducer";
 import userProfileReducer from "./userReducer";
-import gameReducer from "./gameReducer";
+import apiReducer from "./apiReducer";
 const rootReducer = combineReducers({
-  //highscore: highscoreReducer,
+  highscore: highscoreReducer,
   login: loginReducer,
-  game: gameReducer,
+  api: apiReducer,
   //profile: profileReducer,
   userProfile: userProfileReducer,
 });
