@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../redux/Service/actions-Thunks-api/loginAction";
+import { loginUser } from "../redux/Service/actions-Thunks-api/UserAction";
 
 function LoginContainer() {
   const dispatch = useDispatch();
-  const loginStatus = useSelector((state) =>
-    state.user?.data ? "success" : null
-  );
-  const loginError = useSelector((state) => state.user?.error);
-
+  const userData = useSelector((state) => state.userProfile.userData);
+  const token = useSelector((state) => state.userProfile.token);
+  const userId = useSelector((state) => state.userProfile.userId);
+  const loginError = useSelector((state) => state.userProfile?.error);
+  const state = useSelector((state) => state);
+  console.log(state);
   const [formData, setFormData] = useState({
     username: "",
     password: "",

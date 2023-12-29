@@ -23,6 +23,30 @@
       "password": "rejufdj",
       "id": 3,
       "admin": false
+    },
+    {
+      "username": "fggfgf",
+      "password": "gfgffg",
+      "id": 4,
+      "admin": false
+    },
+    {
+      "username": "UserAdmingfgfgf",
+      "password": "PassAdmin",
+      "id": 5,
+      "admin": false
+    },
+    {
+      "username": "UserAdminfffd",
+      "password": "PassAdmin",
+      "id": 6,
+      "admin": false
+    },
+    {
+      "username": "mark",
+      "password": "mark",
+      "id": 7,
+      "admin": false
     }
   ],
   "games": [

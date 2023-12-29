@@ -1,6 +1,46 @@
-import { loginSuccess, loginFailure } from "../../types/actionsTypes";
+import {
+  loginRequest,
+  loginSuccess,
+  loginFailure,
+  setUserToken,
+  logout,
+  createUserRequest,
+  createUserSuccess,
+  createUserFailure,
+  updateProfileRequest,
+  updateProfileSuccess,
+  updateProfileFailure,
+  getUserRequest,
+  getUserSuccess,
+  getUserFailure,
+} from "../reducers-Slice/UserReducer";
+
 import { useDispatch } from "react-redux";
 
+export function createUser(formData) {
+  return (dispatch) => {
+    fetch("http://localhost:9090/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("error");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Assuming data contains userId and token
+        dispatch({ type: "USER_CREATED", payload: data });
+      })
+      .catch((error) => {
+        // handle error
+      });
+  };
+}
 export function loginUser(formData) {
   return (dispatch) => {
     return fetch("http://localhost:9090/login", {
@@ -17,8 +57,8 @@ export function loginUser(formData) {
         return response.json(); // Antager at serveren svarer med JSON
       })
       .then((data) => {
-        // Dispatcher success action med modtagne data
         dispatch(loginSuccess(data));
+        dispatch(setUserToken({ token: data.token, userId: data.userId }));
       })
       .catch((error) => {
         // Dispatcher failure action med fejlbesked

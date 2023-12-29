@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavbarContainer";
 import GameContainer from "./components/GameContainer";
 import LoginContainer from "./components/LoginContainer";
-import CreateContainer from "./components/CreateContainer";
+import CreateContainer from "./components/CreateLoginContainer";
 import HighScoreContainer from "./components/HighScoreContainer";
 
 function App() {

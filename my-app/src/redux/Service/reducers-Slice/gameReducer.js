@@ -6,18 +6,15 @@ import {
   processMatches,
 } from "../../../gameLogic/gameLogic";
 
-const initialState = {
-  id: -1,
-  user: -1,
-  completed: false,
-  board: createInitialBoard(),
-  selectedTile: null,
-  matches: [],
-  score: 0,
+const initialState: GameServerState = {
+  loading: false,
+  games: [],
+  gameDetails: null,
+  error: null,
 };
 
 export const gameSlice = createSlice({
-  name: "game",
+  name: "gameServer",
   initialState,
   reducers: {
     selectTile: (state, action) => {

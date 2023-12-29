@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createUser } from "../redux/Service/actions-Thunks-api/createAction";
+import { createUser } from "../redux/Service/actions-Thunks-api/UserAction";
 //import { useNavigate } from "react-router-dom";
 function Signup() {
   const dispatch = useDispatch();
@@ -58,6 +58,8 @@ function Signup() {
           password: formData.password,
         })
       );
+      console.log("CreateUser API call completed successfully.");
+
       // Nulstiller formular efter succes
       setFormData({
         username: "",
