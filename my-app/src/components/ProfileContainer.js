@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateUser } from "../redux/Service/actions-Thunks-api/UserAction"; // Import your updateUser action creator
+import { updateUser } from "../redux/Service/actions-Thunks-api/UserAction";
 
 function Profile() {
-  const user = useSelector((state) => state.userProfile); // Get user data from Redux or another state management
+  const user = useSelector((state) => state.userProfile);
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
