@@ -1,5 +1,20 @@
 import { Dispatch } from "redux";
+import {
+  getGamesRequest,
+  getGamesSuccess,
+  getGamesFailure,
+  postGameRequest,
+  postGameSuccess,
+  postGameFailure,
+  getGameByIdRequest,
+  getGameByIdSuccess,
+  getGameByIdFailure,
+  updateGameRequest,
+  updateGameSuccess,
+  updateGameFailure,
+} from "../reducers-Slice/gameReducer";
 const url = "http://localhost:9090";
+
 export const fetchGames = (token) => {
   return async (dispatch) => {
     dispatch(getGamesRequest());
@@ -35,9 +50,7 @@ export const startNewGame = (token, userId) => {
 
       const data = await response.json();
       dispatch(postGameSuccess(data));
-
-      // Dispatch action to update game ID and user ID in the game state
-      dispatch(setGameDetails({ id: data.id, user: userId }));
+      dispatch(updateGameSuccess({ id: data.id, user: userId }));
     } catch (error) {
       dispatch(postGameFailure("Failed Starting new game try agian."));
     }

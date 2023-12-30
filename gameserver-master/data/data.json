@@ -47,6 +47,18 @@
       "password": "mark",
       "id": 7,
       "admin": false
+    },
+    {
+      "username": "Usertis",
+      "password": "tis",
+      "id": 8,
+      "admin": false
+    },
+    {
+      "username": "tislis",
+      "password": "tis",
+      "id": 9,
+      "admin": false
     }
   ],
   "games": [

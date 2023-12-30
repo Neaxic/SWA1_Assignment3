@@ -8,7 +8,7 @@ import GameContainer from "./components/GameContainer";
 import LoginContainer from "./components/LoginContainer";
 import CreateContainer from "./components/CreateLoginContainer";
 import HighScoreContainer from "./components/HighScoreContainer";
-
+import ProfileContainer from "./components/ProfileContainer";
 function App() {
   return (
     <Provider store={store}>
@@ -20,7 +20,7 @@ function App() {
             <Route path="/game" element={<GameContainer />} />
             <Route path="/login" element={<LoginContainer />} />
             <Route path="/signup" element={<CreateContainer />} />
-            <Route path="/profile" element={<HighScoreContainer />} />
+            <Route path="/profile" element={<ProfileContainer />} />
           </Routes>
         </div>
       </Router>

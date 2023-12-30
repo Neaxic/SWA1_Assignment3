@@ -1,57 +1,85 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  createInitialBoard,
-  performSwap,
-  canmove,
-  processMatches,
-} from "../../../gameLogic/gameLogic";
 
-const initialState: GameServerState = {
-  loading: false,
-  games: [],
-  gameDetails: null,
-  error: null,
-};
-
-export const gameSlice = createSlice({
+const gameServerSlice = createSlice({
   name: "gameServer",
-  initialState,
+  initialState: {
+    loading: false,
+    games: [],
+    gameDetails: null,
+    error: null,
+  },
   reducers: {
-    selectTile: (state, action) => {
-      state.selectedTile = action.payload;
+    getGamesRequest: (state) => {
+      state.loading = true;
+      state.error = null;
     },
-    swapTiles: (state, action) => {
-      const { firstTile, secondTile } = action.payload;
-      if (canmove(state.board, firstTile, secondTile)) {
-        state.board = performSwap(state.board, firstTile, secondTile);
-        const matchResult = processMatches(state.board);
-        state.board = matchResult.board;
-        state.score += matchResult.score;
-        state.selectedTile = null;
-      } else {
-        state.selectedTile = null;
-      }
+    getGamesSuccess: (state, action) => {
+      state.loading = false;
+      state.games = action.payload;
+      state.error = null;
     },
-    setGameDetails: (state, action) => {
-      state.id = action.payload.id;
-      state.user = action.payload.user;
+    getGamesFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     },
-    resetScore: (state) => {
-      state.score = 0;
+    postGameRequest: (state) => {
+      state.loading = true;
+      state.error = null;
     },
-    resetGame: (state) => {
-      state.id = -1;
-      state.user = -1;
-      state.completed = false;
-      state.board = createInitialBoard();
-      state.selectedTile = null;
-      state.matches = [];
-      state.score = 0;
+    postGameSuccess: (state, action) => {
+      state.loading = false;
+      state.games = [...state.games, action.payload];
+      state.error = null;
+    },
+    postGameFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    getGameByIdRequest: (state) => {
+      state.loading = true;
+      state.gameDetails = null;
+      state.error = null;
+    },
+    getGameByIdSuccess: (state, action) => {
+      state.loading = false;
+      state.gameDetails = action.payload;
+      state.error = null;
+    },
+    getGameByIdFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    updateGameRequest: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    updateGameSuccess: (state, action) => {
+      state.loading = false;
+      state.games = state.games.map((game) =>
+        game.id === action.payload.id ? action.payload : game
+      );
+      state.error = null;
+    },
+    updateGameFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     },
   },
 });
 
-export const { selectTile, swapTiles, setGameDetails, resetScore, resetGame } =
-  gameSlice.actions;
+export const {
+  getGamesRequest,
+  getGamesSuccess,
+  getGamesFailure,
+  postGameRequest,
+  postGameSuccess,
+  postGameFailure,
+  getGameByIdRequest,
+  getGameByIdSuccess,
+  getGameByIdFailure,
+  updateGameRequest,
+  updateGameSuccess,
+  updateGameFailure,
+} = gameServerSlice.actions;
 
-export default gameSlice.reducer;
+export default gameServerSlice.reducer;

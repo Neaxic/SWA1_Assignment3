@@ -5,6 +5,7 @@ import {
   move,
   findMatches,
 } from "../gameLogic/gameLogic";
+
 import { startNewGame } from "../redux/Service/actions-Thunks-api/apiAction";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -20,7 +21,7 @@ function GameOfThreeComponent() {
   console.log(state);
   const { token } = useSelector((state) => state.userProfile.token || {});
   const { userId } = useSelector((state) => state.userProfile.userId || {});
-  //const gameapi = useSelector((state) => state.gameServer.getGamesRequest);
+  // const gameapi = useSelector((state) => state.);
   const dispatch = useDispatch();
 
   const handleCellClick = (rowIndex, colIndex) => {
@@ -40,13 +41,13 @@ function GameOfThreeComponent() {
 
   function startNewGame() {
     const newBoard = create(generator, cols, rows);
-    dispatch(startNewGame(token, userId));
     setBoard(newBoard);
     setSelectedTiles([]);
   }
 
   function submitscore() {
     alert(`Congratulations! You got ${highScore}!`);
+    dispatch(startNewGame(token, userId));
   }
 
   function endgame() {
