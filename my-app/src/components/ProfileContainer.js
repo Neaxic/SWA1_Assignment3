@@ -6,13 +6,11 @@ function Profile() {
   const user = useSelector((state) => state.userProfile); // Get user data from Redux or another state management
   const dispatch = useDispatch();
 
-  // State for form inputs
   const [formData, setFormData] = useState({
     username: "", // Initialize as empty
     password: "", // Initialize as empty
   });
 
-  // Handle form input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -20,13 +18,12 @@ function Profile() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Include necessary fields in the update payload
     const updatePayload = {
-      userId: user.userId, // Preset with current user ID
+      userId: user.userId,
       username: formData.username,
       password: formData.password,
     };
-    dispatch(updateUser(user.userId)); // Dispatch the action to update the user
+    dispatch(updateUser(user.userId));
   };
 
   return (

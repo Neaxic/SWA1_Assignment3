@@ -4,10 +4,6 @@ import { loginUser } from "../redux/Service/actions-Thunks-api/UserAction";
 
 function LoginContainer() {
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.userProfile.userData);
-  const token = useSelector((state) => state.userProfile.token);
-  const userId = useSelector((state) => state.userProfile.userId);
-  const loginError = useSelector((state) => state.userProfile?.error);
   const state = useSelector((state) => state);
   console.log(state);
   const [formData, setFormData] = useState({

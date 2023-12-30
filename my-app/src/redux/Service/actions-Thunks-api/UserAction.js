@@ -15,9 +15,6 @@ import {
   getUserFailure,
 } from "../reducers-Slice/UserReducer";
 
-// Removed useDispatch import as it's not needed in this context
-
-// createUser action creator
 export function createUser(formData) {
   return async (dispatch) => {
     dispatch(createUserRequest());
@@ -55,7 +52,7 @@ export function loginUser(credentials) {
       });
       const data = await response.json();
       if (response.ok) {
-        dispatch(setUserToken(data.token)); // Assuming you store the token here
+        dispatch(setUserToken(data.token));
         dispatch(loginSuccess(data));
       } else {
         dispatch(loginFailure(data));

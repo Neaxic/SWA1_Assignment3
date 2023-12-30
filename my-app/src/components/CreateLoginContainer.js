@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../redux/Service/actions-Thunks-api/UserAction";
-//import { useNavigate } from "react-router-dom";
 function Signup() {
   const dispatch = useDispatch();
 
@@ -50,7 +49,7 @@ function Signup() {
       });
       return;
     }
-    // Dispatch createUser action
+
     try {
       await dispatch(
         createUser({
